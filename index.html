@@ -6,208 +6,205 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Lima Ely 💰">
+<meta name="apple-mobile-web-app-title" content="Lima Ely">
 <meta name="theme-color" content="#0F2240">
-<title>💰 Lima Ely — Controle Financeiro</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<title>💰 Lima Ely</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy:#0F2240; --blue:#1A56A0; --blue2:#2D7DD2; --ice:#E8F4FD; --xice:#EBF8FF;
-  --green:#10B981; --glight:#D1FAE5; --gdark:#064E3B;
+  --navy:#0F2240; --blue:#1A56A0; --blue2:#2D7DD2; --ice:#E8F4FD;
+  --green:#10B981; --gdark:#064E3B; --glight:#D1FAE5;
   --amber:#F59E0B; --alight:#FEF3C7;
   --red:#EF4444; --rlight:#FEE2E2;
-  --off:#F8FAFC; --g100:#F1F5F9; --g200:#E2E8F0; --g400:#94A3B8; --g600:#475569; --g800:#1E293B;
-  --white:#FFFFFF; --R:16px; --Rsm:10px; --sh:0 2px 8px rgba(15,34,64,.07);
+  --g100:#F1F5F9; --g200:#E2E8F0; --g400:#94A3B8; --g600:#475569; --g800:#1E293B;
+  --white:#FFFFFF; --off:#F8FAFC;
 }
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--g100);color:var(--g800);display:flex;justify-content:center;min-height:100dvh}
-#app{width:100%;max-width:430px;min-height:100dvh;background:var(--off);display:flex;flex-direction:column}
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+body { font-family:'DM Sans',system-ui,sans-serif; background:var(--g100); display:flex; justify-content:center; min-height:100dvh; }
+#app { width:100%; max-width:430px; min-height:100dvh; background:var(--off); display:flex; flex-direction:column; }
 
 /* HEADER */
-.hdr{background:var(--navy);padding:14px 18px 12px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
-.hdr-l .ht{font-size:16px;font-weight:700;color:#fff;letter-spacing:-.3px}
-.hdr-l .hs{font-size:10px;color:rgba(255,255,255,.45);margin-top:1px}
-.hdr-r{display:flex;align-items:center;gap:8px}
-.sync{width:8px;height:8px;border-radius:50%;background:var(--g400);transition:background .3s;flex-shrink:0}
-.sync.ok{background:var(--green)}
-.sync.busy{background:var(--amber);animation:blink .7s infinite}
-.sync.err{background:var(--red)}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.mbadge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
-
-/* CONFIG BANNER */
-.cfg-banner{background:var(--amber);padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:#78350F;cursor:pointer}
-.cfg-banner span{flex:1}
+.hdr { background:var(--navy); padding:14px 18px 12px; display:flex; align-items:center; justify-content:space-between; }
+.ht { font-size:16px; font-weight:700; color:#fff; }
+.hs { font-size:10px; color:rgba(255,255,255,.45); margin-top:1px; }
+.hdr-r { display:flex; align-items:center; gap:8px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--g400); transition:background .3s; }
+.dot.ok { background:var(--green); }
+.dot.busy { background:var(--amber); animation:blink .7s infinite; }
+.dot.err { background:var(--red); }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.mbadge { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:20px; padding:4px 11px; font-size:11px; font-weight:600; color:rgba(255,255,255,.8); }
 
 /* USER BAR */
-.ubar{background:var(--navy);padding:0 18px 14px;display:flex;gap:8px}
-.ubtn{flex:1;padding:8px;border-radius:9px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.1);color:rgba(255,255,255,.55)}
-.ubtn.on{background:var(--blue2);color:#fff;box-shadow:0 2px 12px rgba(45,125,210,.4)}
+.ubar { background:var(--navy); padding:0 18px 14px; display:flex; gap:8px; }
+.ubtn { flex:1; padding:8px; border-radius:9px; border:none; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; background:rgba(255,255,255,.1); color:rgba(255,255,255,.55); }
+.ubtn.on { background:var(--blue2); color:#fff; }
 
-/* CONTENT / TABS */
-.content{flex:1;overflow-y:auto;padding-bottom:78px}
-.tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--g200);display:flex;z-index:50;box-shadow:0 -4px 20px rgba(15,34,64,.08)}
-.tbtn{flex:1;padding:9px 4px 7px;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;color:var(--g400);transition:color .15s}
-.tbtn.on{color:var(--blue)}
-.tbtn .ic{font-size:20px;line-height:1}
-.tc{display:none}.tc.on{display:block}
+/* TABS */
+.content { flex:1; overflow-y:auto; padding-bottom:78px; }
+.tabbar { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:#fff; border-top:1px solid var(--g200); display:flex; z-index:50; box-shadow:0 -4px 20px rgba(15,34,64,.08); }
+.tbtn { flex:1; padding:9px 4px 7px; border:none; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:500; color:var(--g400); }
+.tbtn.on { color:var(--blue); }
+.tbtn .ic { font-size:20px; line-height:1; }
+.tc { display:none; }
+.tc.on { display:block; }
 
 /* LANÇAR */
-.vdisp{background:var(--navy);padding:20px 18px 16px;text-align:center;transition:background .3s}
-.vdisp.rec{background:var(--gdark)}
-.vlbl{font-size:10px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
-.vnum{font-family:'JetBrains Mono',monospace;font-size:50px;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;min-height:54px}
-.vpfx{font-size:18px;font-weight:400;color:rgba(255,255,255,.45);vertical-align:super;margin-right:3px;font-family:'DM Sans',sans-serif}
+.vdisp { background:var(--navy); padding:20px 18px 16px; text-align:center; transition:background .3s; }
+.vdisp.rec { background:var(--gdark); }
+.vlbl { font-size:10px; font-weight:600; letter-spacing:.08em; color:rgba(255,255,255,.4); text-transform:uppercase; margin-bottom:6px; }
+.vnum { font-family:'JetBrains Mono',monospace; font-size:50px; font-weight:700; color:#fff; letter-spacing:-2px; line-height:1; min-height:54px; }
+.vpfx { font-size:18px; font-weight:400; color:rgba(255,255,255,.45); vertical-align:super; margin-right:3px; font-family:'DM Sans',sans-serif; }
 
-.tipo-row{display:flex;margin:12px 14px 4px;background:var(--g100);border-radius:12px;padding:4px;gap:4px}
-.tpbtn{flex:1;padding:9px;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .18s;background:transparent;color:var(--g400)}
-.tpbtn.ag{background:#fff;color:var(--red);box-shadow:var(--sh)}
-.tpbtn.ar{background:#fff;color:var(--green);box-shadow:var(--sh)}
+.tipo-row { display:flex; margin:12px 14px 4px; background:var(--g100); border-radius:12px; padding:4px; gap:4px; }
+.tpbtn { flex:1; padding:9px; border:none; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; background:transparent; color:var(--g400); transition:all .15s; }
+.tpbtn.ag { background:#fff; color:var(--red); box-shadow:0 2px 8px rgba(15,34,64,.07); }
+.tpbtn.ar { background:#fff; color:var(--green); box-shadow:0 2px 8px rgba(15,34,64,.07); }
 
-.cats-sec{padding:12px 14px 6px}
-.cats-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--g400);text-transform:uppercase;margin-bottom:9px}
-.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.cbtn{background:#fff;border:2px solid var(--g200);border-radius:var(--Rsm);padding:9px 3px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .15s}
-.cbtn .ci{font-size:20px;line-height:1}
-.cbtn .cn{font-size:9px;font-weight:600;color:var(--g600);text-align:center}
-.cbtn.sel{border-color:var(--blue);background:var(--ice);box-shadow:0 0 0 3px rgba(26,86,160,.1)}
-.cbtn.sel .cn{color:var(--blue)}
+.cats-sec { padding:12px 14px 6px; }
+.cats-lbl { font-size:10px; font-weight:700; letter-spacing:.07em; color:var(--g400); text-transform:uppercase; margin-bottom:9px; }
+.cgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+.cbtn { background:#fff; border:2px solid var(--g200); border-radius:10px; padding:9px 3px 7px; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; transition:all .15s; }
+.cbtn .ci { font-size:20px; line-height:1; }
+.cbtn .cn { font-size:9px; font-weight:600; color:var(--g600); text-align:center; }
+.cbtn.sel { border-color:var(--blue); background:var(--ice); }
+.cbtn.sel .cn { color:var(--blue); }
 
-.dsec{padding:4px 14px 10px}
-.dinput{width:100%;background:#fff;border:2px solid var(--g200);border-radius:var(--Rsm);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--g800);outline:none;transition:border-color .15s}
-.dinput:focus{border-color:var(--blue)}
-.dinput::placeholder{color:var(--g400)}
+.dsec { padding:4px 14px 10px; }
+.dinput { width:100%; background:#fff; border:2px solid var(--g200); border-radius:10px; padding:11px 14px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--g800); outline:none; transition:border-color .15s; }
+.dinput:focus { border-color:var(--blue); }
+.dinput::placeholder { color:var(--g400); }
 
-.kpad{padding:6px 14px 10px}
-.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.key{background:#fff;border:none;border-radius:var(--Rsm);height:60px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--g800);cursor:pointer;box-shadow:var(--sh);transition:all .1s}
-.key:active{transform:scale(.93);background:var(--ice)}
-.kdel{background:var(--g100);font-size:18px;color:var(--g600)}
-.kconf{grid-column:span 3;background:var(--blue);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;height:54px;border-radius:var(--R);box-shadow:0 4px 16px rgba(26,86,160,.35);letter-spacing:.02em}
-.kconf:active{background:var(--navy);transform:scale(.98)}
-.kconf:disabled{background:var(--g200);color:var(--g400);box-shadow:none;transform:none}
-.kconf.rmode{background:var(--green);box-shadow:0 4px 16px rgba(16,185,129,.35)}
+.kpad { padding:6px 14px 10px; }
+.kgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+.key { background:#fff; border:none; border-radius:10px; height:60px; font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:600; color:var(--g800); cursor:pointer; box-shadow:0 2px 8px rgba(15,34,64,.07); transition:all .1s; }
+.key:active { transform:scale(.93); background:var(--ice); }
+.kdel { background:var(--g100); font-size:18px; color:var(--g600); }
+.kconf { grid-column:span 3; background:var(--blue); color:#fff; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; height:54px; border-radius:16px; box-shadow:0 4px 16px rgba(26,86,160,.35); letter-spacing:.02em; }
+.kconf:active { background:var(--navy); transform:scale(.98); }
+.kconf:disabled { background:var(--g200); color:var(--g400); box-shadow:none; transform:none; }
+.kconf.rmode { background:var(--green); box-shadow:0 4px 16px rgba(16,185,129,.35); }
 
 /* SALDO */
-.shdr{background:var(--navy);padding:18px 18px 20px}
-.stlbl{font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px}
-.stval{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:#fff;letter-spacing:-1px}
-.stsub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
-.qs{display:flex;gap:8px;padding:12px 14px 0}
-.qsc{flex:1;background:#fff;border-radius:var(--Rsm);padding:11px;text-align:center;box-shadow:var(--sh)}
-.qsv{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--navy)}
-.qsl{font-size:9px;font-weight:600;color:var(--g400);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-.rcw{padding:10px 14px 0}
-.rcard{background:var(--glight);border-radius:var(--R);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--sh)}
-.rcl{font-size:12px;font-weight:600;color:var(--green)}
-.rcs{font-size:10px;color:var(--green);margin-top:1px}
-.rcv{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--green)}
-.acw{padding:10px 14px 0}
-.acard{padding:11px 14px;border-radius:var(--Rsm);display:flex;align-items:flex-start;gap:9px;font-size:12px;font-weight:500;line-height:1.4;margin-bottom:8px}
-.acard.w{background:var(--alight);color:#92400E}
-.acard.c{background:var(--rlight);color:#991B1B}
-.scw{padding:10px 14px 8px;display:flex;flex-direction:column;gap:9px}
-.scard{background:#fff;border-radius:var(--R);padding:13px 14px;box-shadow:var(--sh)}
-.sctop{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
-.scn{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--g800)}
-.svals{text-align:right}
-.sg{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--g800)}
-.sb{font-size:10px;color:var(--g400);margin-top:1px}
-.pb{height:5px;background:var(--g100);border-radius:99px;overflow:hidden}
-.pf{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.34,1.3,.64,1)}
-.pok{background:var(--green)}.pw{background:var(--amber)}.pc{background:var(--red)}
-.sdp{display:flex;justify-content:space-between;margin-top:7px}
-.sdl{font-size:10px;color:var(--g400)}
-.sdv{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
-.vok{color:var(--green)}.vw{color:var(--amber)}.vc{color:var(--red)}
+.shdr { background:var(--navy); padding:18px 18px 20px; }
+.stlbl { font-size:10px; font-weight:700; letter-spacing:.08em; color:rgba(255,255,255,.4); text-transform:uppercase; margin-bottom:5px; }
+.stval { font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:700; color:#fff; letter-spacing:-1px; }
+.stsub { font-size:11px; color:rgba(255,255,255,.4); margin-top:3px; }
+.qs { display:flex; gap:8px; padding:12px 14px 0; }
+.qsc { flex:1; background:#fff; border-radius:10px; padding:11px; text-align:center; box-shadow:0 2px 8px rgba(15,34,64,.07); }
+.qsv { font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:var(--navy); }
+.qsl { font-size:9px; font-weight:600; color:var(--g400); margin-top:2px; text-transform:uppercase; letter-spacing:.05em; }
+.rcw { padding:10px 14px 0; }
+.rcard { background:var(--glight); border-radius:16px; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 8px rgba(15,34,64,.07); }
+.rcl { font-size:12px; font-weight:600; color:var(--green); }
+.rcs { font-size:10px; color:var(--green); margin-top:1px; }
+.rcv { font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:var(--green); }
+.acw { padding:10px 14px 0; }
+.acard { padding:11px 14px; border-radius:10px; display:flex; align-items:flex-start; gap:9px; font-size:12px; font-weight:500; line-height:1.4; margin-bottom:8px; }
+.acard.w { background:var(--alight); color:#92400E; }
+.acard.c { background:var(--rlight); color:#991B1B; }
+.scw { padding:10px 14px 8px; display:flex; flex-direction:column; gap:9px; }
+.scard { background:#fff; border-radius:16px; padding:13px 14px; box-shadow:0 2px 8px rgba(15,34,64,.07); }
+.sctop { display:flex; justify-content:space-between; align-items:center; margin-bottom:9px; }
+.scn { display:flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:var(--g800); }
+.svals { text-align:right; }
+.sg { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; color:var(--g800); }
+.sb { font-size:10px; color:var(--g400); margin-top:1px; }
+.pb { height:5px; background:var(--g100); border-radius:99px; overflow:hidden; }
+.pf { height:100%; border-radius:99px; transition:width .6s ease; }
+.pok { background:var(--green); } .pw { background:var(--amber); } .pc { background:var(--red); }
+.sdp { display:flex; justify-content:space-between; margin-top:7px; }
+.sdl { font-size:10px; color:var(--g400); }
+.sdv { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; }
+.vok { color:var(--green); } .vw { color:var(--amber); } .vc { color:var(--red); }
 
 /* HISTÓRICO */
-.hhdr{background:var(--navy);padding:18px}
-.htot{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px}
-.hfilt{padding:10px 14px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
-.hfilt::-webkit-scrollbar{display:none}
-.fchip{padding:5px 12px;border-radius:20px;border:2px solid var(--g200);background:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;color:var(--g600);white-space:nowrap;cursor:pointer;transition:all .15s;flex-shrink:0}
-.fchip.on{border-color:var(--blue);background:var(--ice);color:var(--blue)}
-.hlist{padding:0 14px 8px;display:flex;flex-direction:column;gap:7px}
-.hitem{background:#fff;border-radius:var(--R);padding:12px 14px;box-shadow:var(--sh);display:flex;align-items:center;gap:10px;position:relative;overflow:hidden}
-.hitem::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
-.hitem.ri{background:#F0FFF4}.hitem.ri::before{background:var(--green)!important}
-.cE::before{background:#2B6CB0}.cM::before{background:#553C9A}.cS::before{background:#C53030}
-.cA::before{background:#276749}.cT::before{background:#C05621}.cL::before{background:#2C7A7B}
-.cO::before{background:#4A5568}.cP::before{background:#D69E2E}.cPo::before{background:#10B981}
-.hico{font-size:22px;flex-shrink:0}
-.hinf{flex:1;min-width:0}
-.hdsc{font-size:13px;font-weight:600;color:var(--g800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hmet{font-size:10px;color:var(--g400);margin-top:2px}
-.hval{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--g800);flex-shrink:0}
-.hval.rv{color:var(--green)}.hval.rv::before{content:'+'}
-.hdel{background:none;border:none;font-size:15px;cursor:pointer;padding:3px;color:var(--g400);flex-shrink:0}
-.hempty{text-align:center;padding:50px 18px;color:var(--g400)}
-.hempty .ei{font-size:44px;margin-bottom:10px}
-.hempty p{font-size:13px;line-height:1.5}
+.hhdr { background:var(--navy); padding:18px; }
+.htot { font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; color:#fff; letter-spacing:-1px; }
+.hfilt { padding:10px 14px; display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; }
+.hfilt::-webkit-scrollbar { display:none; }
+.fchip { padding:5px 12px; border-radius:20px; border:2px solid var(--g200); background:#fff; font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; color:var(--g600); white-space:nowrap; cursor:pointer; flex-shrink:0; }
+.fchip.on { border-color:var(--blue); background:var(--ice); color:var(--blue); }
+.hlist { padding:0 14px 8px; display:flex; flex-direction:column; gap:7px; }
+.hitem { background:#fff; border-radius:16px; padding:12px 14px; box-shadow:0 2px 8px rgba(15,34,64,.07); display:flex; align-items:center; gap:10px; position:relative; overflow:hidden; }
+.hitem::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+.ri { background:#F0FFF4; } .ri::before { background:var(--green) !important; }
+.cE::before{background:#2B6CB0} .cM::before{background:#553C9A} .cS::before{background:#C53030}
+.cA::before{background:#276749} .cT::before{background:#C05621} .cL::before{background:#2C7A7B}
+.cO::before{background:#4A5568} .cP::before{background:#D69E2E} .cPo::before{background:#10B981}
+.hico { font-size:22px; flex-shrink:0; }
+.hinf { flex:1; min-width:0; }
+.hdsc { font-size:13px; font-weight:600; color:var(--g800); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hmet { font-size:10px; color:var(--g400); margin-top:2px; }
+.hval { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; color:var(--g800); flex-shrink:0; }
+.hval.rv { color:var(--green); }
+.hval.rv::before { content:'+'; }
+.hdel { background:none; border:none; font-size:15px; cursor:pointer; padding:3px; color:var(--g400); flex-shrink:0; }
+.hempty { text-align:center; padding:50px 18px; color:var(--g400); }
+.hempty .ei { font-size:44px; margin-bottom:10px; }
+.hempty p { font-size:13px; line-height:1.5; }
 
-/* CONFIG MODAL */
-.cfgmodal{background:var(--off);border-radius:22px 22px 0 0;padding:24px 20px;position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:430px;z-index:200;transition:transform .35s cubic-bezier(.34,1.1,.64,1);box-shadow:0 -8px 40px rgba(0,0,0,.18)}
-.cfgmodal.show{transform:translateX(-50%) translateY(0)}
-.cfgoverlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s}
-.cfgoverlay.show{opacity:1;pointer-events:all}
-.cfgtitle{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.cfgsub{font-size:12px;color:var(--g400);margin-bottom:18px}
-.cfglbl{font-size:11px;font-weight:700;color:var(--g600);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-.cfginput{width:100%;background:#fff;border:2px solid var(--g200);border-radius:var(--Rsm);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--g800);outline:none;margin-bottom:14px;transition:border-color .15s}
-.cfginput:focus{border-color:var(--blue)}
-.cfgbtn{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:var(--R);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px}
-.cfgbtn:active{background:var(--navy)}
-.cfgcancel{width:100%;padding:11px;background:var(--g100);color:var(--g600);border:none;border-radius:var(--R);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
-.cfginfo{background:var(--xice);border-radius:var(--Rsm);padding:12px;font-size:12px;color:var(--g600);line-height:1.5;margin-bottom:16px}
-.cfginfo a{color:var(--blue);font-weight:600}
+/* CONFIG */
+.cfgov { position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:100; opacity:0; pointer-events:none; transition:opacity .25s; }
+.cfgov.on { opacity:1; pointer-events:all; }
+.cfgbox { background:var(--off); border-radius:22px 22px 0 0; padding:24px 20px 32px; position:fixed; bottom:0; left:50%; transform:translateX(-50%) translateY(100%); width:100%; max-width:430px; z-index:101; transition:transform .35s cubic-bezier(.34,1.1,.64,1); box-shadow:0 -8px 40px rgba(0,0,0,.18); }
+.cfgbox.on { transform:translateX(-50%) translateY(0); }
+.cfgt { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.cfgs { font-size:12px; color:var(--g400); margin-bottom:16px; }
+.cfgi { background:var(--ice); border-radius:10px; padding:12px 14px; font-size:12px; color:var(--g600); line-height:1.6; margin-bottom:16px; }
+.cfgi a { color:var(--blue); font-weight:600; }
+.cfgi strong { color:var(--navy); }
+.cfgl { font-size:11px; font-weight:700; color:var(--g600); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
+.cfginp { width:100%; background:#fff; border:2px solid var(--g200); border-radius:10px; padding:11px 14px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--g800); outline:none; margin-bottom:12px; }
+.cfginp:focus { border-color:var(--blue); }
+.cfgbtn { width:100%; padding:13px; border:none; border-radius:16px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; cursor:pointer; margin-bottom:8px; }
+.cfgbtn.primary { background:var(--blue); color:#fff; }
+.cfgbtn.secondary { background:var(--g100); color:var(--g600); }
+.cfgstatus { padding:10px 14px; border-radius:10px; font-size:13px; font-weight:600; margin-bottom:10px; display:none; }
+.cfgstatus.ok { background:var(--glight); color:var(--green); display:block; }
+.cfgstatus.err { background:var(--rlight); color:var(--red); display:block; }
 
-/* SUCCESS MODAL */
-.overlay{position:fixed;inset:0;background:rgba(15,34,64,.6);backdrop-filter:blur(4px);z-index:150;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
-.overlay.show{opacity:1;pointer-events:all}
-.modal{background:#fff;border-radius:22px;padding:28px 22px;width:calc(100% - 40px);max-width:360px;text-align:center;transform:scale(.85);transition:transform .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 24px 64px rgba(0,0,0,.2)}
-.overlay.show .modal{transform:scale(1)}
-.memo{font-size:50px;margin-bottom:10px}
-.mtit{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:5px}
-.mval{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--blue);letter-spacing:-1px;margin-bottom:3px}
-.mcat{font-size:12px;color:var(--g400);margin-bottom:14px}
-.malerta{background:var(--alight);border-radius:var(--Rsm);padding:9px 12px;font-size:12px;color:#92400E;font-weight:500;margin-bottom:10px;text-align:left}
-.malerta.c{background:var(--rlight);color:#991B1B}
-.msaldo{background:var(--ice);border-radius:var(--Rsm);padding:12px;margin-bottom:14px;text-align:left}
-.msr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.msr:last-child{margin-bottom:0}
-.msl{font-size:11px;color:var(--g600)}
-.msv{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--navy)}
-.mclose{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:var(--R);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+/* MODAL SUCESSO */
+.ov { position:fixed; inset:0; background:rgba(15,34,64,.6); z-index:200; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s; }
+.ov.on { opacity:1; pointer-events:all; }
+.modal { background:#fff; border-radius:22px; padding:28px 22px; width:calc(100% - 40px); max-width:360px; text-align:center; transform:scale(.85); transition:transform .3s cubic-bezier(.34,1.56,.64,1); box-shadow:0 24px 64px rgba(0,0,0,.2); }
+.ov.on .modal { transform:scale(1); }
+.memo { font-size:50px; margin-bottom:10px; }
+.mtit { font-size:20px; font-weight:700; color:var(--navy); margin-bottom:5px; }
+.mval { font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:700; color:var(--blue); letter-spacing:-1px; margin-bottom:3px; }
+.mcat { font-size:12px; color:var(--g400); margin-bottom:14px; }
+.malrt { border-radius:10px; padding:9px 12px; font-size:12px; font-weight:500; margin-bottom:10px; text-align:left; }
+.malrt.w { background:var(--alight); color:#92400E; }
+.malrt.c { background:var(--rlight); color:#991B1B; }
+.minfo { background:var(--ice); border-radius:10px; padding:12px; margin-bottom:14px; text-align:left; }
+.mrow { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+.mrow:last-child { margin-bottom:0; }
+.ml { font-size:11px; color:var(--g600); }
+.mv { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; color:var(--navy); }
+.mclose { width:100%; padding:13px; background:var(--navy); color:#fff; border:none; border-radius:16px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; }
 
 /* TOAST */
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:40px;font-size:13px;font-weight:600;z-index:300;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.2);max-width:90vw;text-align:center}
-.toast.show{transform:translateX(-50%) translateY(0)}
-.toast.ok{background:var(--green)}.toast.w{background:var(--amber);color:var(--g800)}.toast.e{background:var(--red)}
+.toast { position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-90px); background:var(--navy); color:#fff; padding:12px 22px; border-radius:40px; font-size:13px; font-weight:600; z-index:300; transition:transform .3s cubic-bezier(.34,1.56,.64,1); white-space:nowrap; box-shadow:0 8px 32px rgba(0,0,0,.2); max-width:90vw; text-align:center; }
+.toast.on { transform:translateX(-50%) translateY(0); }
+.tok { background:var(--green); }
+.tw { background:var(--amber); color:var(--g800); }
+.te { background:var(--red); }
 </style>
 </head>
 <body>
 <div id="app">
 
-  <!-- HEADER -->
   <div class="hdr">
-    <div class="hdr-l">
+    <div>
       <div class="ht">💰 Lima Ely</div>
       <div class="hs">Controle Financeiro Familiar</div>
     </div>
     <div class="hdr-r">
-      <span class="sync" id="sync" title="Status sincronização"></span>
+      <span class="dot" id="dot"></span>
       <div class="mbadge" id="mbadge">—</div>
     </div>
   </div>
 
-  <!-- AVISO DE CONFIGURAÇÃO -->
-  <div class="cfg-banner" id="cfgBanner" onclick="openCfg()" style="display:none">
-    <span>⚙️ Configure o JSONBin para ativar sincronização</span>
-    <span>→</span>
-  </div>
-
-  <!-- USER BAR -->
   <div class="ubar">
     <button class="ubtn on" onclick="setUser('Fernando')" id="bFer">👨 Fernando</button>
     <button class="ubtn" onclick="setUser('Isabela')" id="bIsa">👩 Isabela</button>
@@ -215,7 +212,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--g100);color:var
 
   <div class="content">
 
-    <!-- TAB LANÇAR -->
     <div class="tc on" id="tc-lancar">
       <div class="vdisp" id="vdisp">
         <div class="vlbl" id="vlbl">Valor a lançar</div>
@@ -237,7 +233,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--g100);color:var
       <div class="kpad"><div class="kgrid" id="kgrid"></div></div>
     </div>
 
-    <!-- TAB SALDO -->
     <div class="tc" id="tc-saldo">
       <div class="shdr">
         <div class="stlbl">Gasto total no mês</div>
@@ -254,7 +249,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--g100);color:var
       <div class="scw" id="scw"></div>
     </div>
 
-    <!-- TAB HISTÓRICO -->
     <div class="tc" id="tc-hist">
       <div class="hhdr">
         <div class="stlbl">Total gastos</div>
@@ -271,392 +265,576 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--g100);color:var
     <button class="tbtn on" onclick="swTab('lancar')" id="tb-lancar"><span class="ic">⚡</span>Lançar</button>
     <button class="tbtn" onclick="swTab('saldo')" id="tb-saldo"><span class="ic">📊</span>Saldo</button>
     <button class="tbtn" onclick="swTab('hist')" id="tb-hist"><span class="ic">📋</span>Histórico</button>
-    <button class="tbtn" onclick="openCfg()" id="tb-cfg"><span class="ic">⚙️</span>Config</button>
+    <button class="tbtn" onclick="abrirCfg()" id="tb-cfg"><span class="ic">⚙️</span>Config</button>
   </div>
 </div>
 
-<!-- CONFIG MODAL -->
-<div class="cfgoverlay" id="cfgOv" onclick="closeCfg()"></div>
-<div class="cfgmodal" id="cfgModal">
-  <div class="cfgtitle">⚙️ Configuração JSONBin</div>
-  <div class="cfgsub">Configure uma vez — Fernando e Isabela compartilham tudo</div>
-  <div class="cfginfo">
-    <strong>Como obter sua Master Key:</strong><br>
-    1. Acesse <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> e crie conta gratuita<br>
-    2. No painel, clique em <strong>API Keys</strong><br>
-    3. Copie sua <strong>Master Key</strong> (começa com <code>$2b$...</code>)<br>
-    4. Cole abaixo e clique em Salvar
+<!-- CONFIG -->
+<div class="cfgov" id="cfgov" onclick="fecharCfg()"></div>
+<div class="cfgbox" id="cfgbox">
+  <div class="cfgt">⚙️ Sincronização JSONBin</div>
+  <div class="cfgs">Dados compartilhados entre Fernando e Isabela</div>
+  <div class="cfgi">
+    <strong>Passo 1:</strong> Acesse <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> e faça login<br>
+    <strong>Passo 2:</strong> Clique em <strong>API Keys</strong> no menu lateral<br>
+    <strong>Passo 3:</strong> Em <strong>Secret Key</strong>, clique em <strong>Show Key</strong> e copie<br>
+    <strong>Passo 4:</strong> Cole abaixo e toque em Conectar
   </div>
-  <div class="cfglbl">Master Key do JSONBin</div>
-  <input class="cfginput" id="cfgKey" type="password" placeholder="$2b$10$...">
-  <div class="cfglbl">Bin ID <span style="font-weight:400;color:var(--g400)">(deixe vazio na primeira vez)</span></div>
-  <input class="cfginput" id="cfgBin" type="text" placeholder="Será criado automaticamente">
-  <button class="cfgbtn" onclick="salvarCfg()">✅ Salvar e Sincronizar</button>
-  <button class="cfgcancel" onclick="closeCfg()">Cancelar</button>
+  <div class="cfgstatus" id="cfgStatus"></div>
+  <div class="cfgl">Secret Key</div>
+  <input class="cfginp" id="cfgKey" type="text" placeholder="$2b$10$...">
+  <div class="cfgl">Bin ID <span style="font-weight:400;color:var(--g400)">(vazio na 1ª vez)</span></div>
+  <input class="cfginp" id="cfgBinId" type="text" placeholder="Criado automaticamente">
+  <button class="cfgbtn primary" onclick="conectar()">🔗 Conectar</button>
+  <button class="cfgbtn secondary" onclick="fecharCfg()">Cancelar</button>
 </div>
 
-<!-- SUCCESS MODAL -->
-<div class="overlay" id="overlay" onclick="closeModal()">
+<!-- MODAL SUCESSO -->
+<div class="ov" id="ov" onclick="fecharModal()">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="memo">✅</div>
     <div class="mtit">Lançado!</div>
     <div class="mval" id="mval"></div>
     <div class="mcat" id="mcat"></div>
-    <div id="malerta"></div>
-    <div class="msaldo" id="msaldo"></div>
-    <button class="mclose" onclick="closeModal()">Fechar</button>
+    <div id="malrt"></div>
+    <div class="minfo" id="minfo"></div>
+    <button class="mclose" onclick="fecharModal()">Fechar</button>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DADOS ──────────────────────────────────────────────────────────────────────
-const BUD={"Educação":7545.23,"Moradia":5631.80,"Saúde":3859.86,"Alimentação":3400,"Transporte":2350,"Esporte/Lazer":1654,"Outros":1480,"Provisão":2302,"Poupança":2000};
-const TOTAL_ORC=30310.67;
-const ICO={"Educação":"🏫","Moradia":"🏠","Saúde":"🏥","Alimentação":"🍽️","Transporte":"🚗","Esporte/Lazer":"🏋️","Outros":"🔄","Provisão":"🗓️","Poupança":"🎯"};
-const CAT_CLS={"Educação":"cE","Moradia":"cM","Saúde":"cS","Alimentação":"cA","Transporte":"cT","Esporte/Lazer":"cL","Outros":"cO","Provisão":"cP","Poupança":"cPo"};
-const MESES=["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+// ── CONSTANTES ────────────────────────────────────────────────────────────────
+var BUD = {
+  "Educacao":7545.23,"Moradia":5631.80,"Saude":3859.86,"Alimentacao":3400,
+  "Transporte":2350,"EsporteLazer":1654,"Outros":1480,"Provisao":2302,"Poupanca":2000
+};
+var BUD_LABEL = {
+  "Educacao":"Educação","Moradia":"Moradia","Saude":"Saúde","Alimentacao":"Alimentação",
+  "Transporte":"Transporte","EsporteLazer":"Esporte/Lazer","Outros":"Outros","Provisao":"Provisão","Poupanca":"Poupança"
+};
+var ICO = {
+  "Educacao":"🏫","Moradia":"🏠","Saude":"🏥","Alimentacao":"🍽️",
+  "Transporte":"🚗","EsporteLazer":"🏋️","Outros":"🔄","Provisao":"🗓️","Poupanca":"🎯"
+};
+var CAT_CLS = {
+  "Educacao":"cE","Moradia":"cM","Saude":"cS","Alimentacao":"cA",
+  "Transporte":"cT","EsporteLazer":"cL","Outros":"cO","Provisao":"cP","Poupanca":"cPo"
+};
+var TOTAL_ORC = 30310.67;
+var MESES = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+var MESES_FULL = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+var JBIN = "https://api.jsonbin.io/v3";
 
-// ── STATE ──────────────────────────────────────────────────────────────────────
-let user='Fernando', vs='', sc=null, tipo='gasto', filtro='Todos';
-let lancs=[], syncing=false, syncTO=null;
-let CFG={key:'',binId:''};
+// ── ESTADO ────────────────────────────────────────────────────────────────────
+var user = "Fernando";
+var vs = "";
+var selCat = null;
+var tipo = "gasto";
+var filtro = "Todos";
+var lancs = [];
+var cfg = { key: "", binId: "" };
+var syncTimer = null;
 
-function mesKey(){const d=new Date();return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`}
-function getLancs(){return lancs.filter(l=>l.mesKey===mesKey()&&l.status!=='CANCELADO')}
-function brl(v,d=2){return v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})}
-function showToast(m,t=''){const e=document.getElementById('toast');e.textContent=m;e.className=`toast ${t} show`;setTimeout(()=>e.classList.remove('show'),3000)}
-function setSyncState(s){document.getElementById('sync').className='sync '+s}
+// ── UTILITÁRIOS ───────────────────────────────────────────────────────────────
+function mesKey() {
+  var d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0");
+}
 
-// ── CONFIG ──────────────────────────────────────────────────────────────────────
-function loadCfg(){
-  try{CFG=JSON.parse(localStorage.getItem('limaely_cfg')||'{"key":"","binId":""}');}
-  catch(e){CFG={key:'',binId:''};}
+function getLancs() {
+  var mk = mesKey();
+  return lancs.filter(function(l) { return l.mk === mk && l.st !== "X"; });
 }
-function saveCfg(){localStorage.setItem('limaely_cfg',JSON.stringify(CFG));}
-function openCfg(){
-  document.getElementById('cfgKey').value=CFG.key||'';
-  document.getElementById('cfgBin').value=CFG.binId||'';
-  document.getElementById('cfgModal').classList.add('show');
-  document.getElementById('cfgOv').classList.add('show');
+
+function brl(v, d) {
+  if (d === undefined) d = 2;
+  return v.toLocaleString("pt-BR", {minimumFractionDigits:d, maximumFractionDigits:d});
 }
-function closeCfg(){
-  document.getElementById('cfgModal').classList.remove('show');
-  document.getElementById('cfgOv').classList.remove('show');
+
+function toast(msg, tipo) {
+  var el = document.getElementById("toast");
+  el.textContent = msg;
+  el.className = "toast on" + (tipo ? " t"+tipo : "");
+  clearTimeout(el._t);
+  el._t = setTimeout(function() { el.className = "toast"; }, 3000);
 }
-async function salvarCfg(){
-  const key=document.getElementById('cfgKey').value.trim();
-  const bin=document.getElementById('cfgBin').value.trim();
-  if(!key){showToast('Informe a Master Key','e');return;}
-  CFG={key,binId:bin};saveCfg();
-  closeCfg();
-  checkBanner();
-  showToast('Configurando...','w');
-  if(!CFG.binId){
-    await criarBin();
+
+function setDot(s) {
+  document.getElementById("dot").className = "dot " + (s || "");
+}
+
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+function carregarCfg() {
+  try {
+    var raw = localStorage.getItem("le_cfg");
+    if (raw) cfg = JSON.parse(raw);
+  } catch(e) { cfg = { key:"", binId:"" }; }
+}
+
+function salvarCfgLocal() {
+  localStorage.setItem("le_cfg", JSON.stringify(cfg));
+}
+
+function carregarLancsLocal() {
+  try {
+    var raw = localStorage.getItem("le_lancs");
+    if (raw) lancs = JSON.parse(raw);
+  } catch(e) { lancs = []; }
+}
+
+function salvarLancsLocal() {
+  try { localStorage.setItem("le_lancs", JSON.stringify(lancs)); } catch(e) {}
+}
+
+function abrirCfg() {
+  document.getElementById("cfgKey").value = cfg.key || "";
+  document.getElementById("cfgBinId").value = cfg.binId || "";
+  document.getElementById("cfgStatus").className = "cfgstatus";
+  document.getElementById("cfgov").className = "cfgov on";
+  document.getElementById("cfgbox").className = "cfgbox on";
+}
+
+function fecharCfg() {
+  document.getElementById("cfgov").className = "cfgov";
+  document.getElementById("cfgbox").className = "cfgbox";
+}
+
+function mostrarStatusCfg(msg, tipo) {
+  var el = document.getElementById("cfgStatus");
+  el.textContent = msg;
+  el.className = "cfgstatus " + tipo;
+}
+
+function conectar() {
+  var key = document.getElementById("cfgKey").value.trim();
+  var binId = document.getElementById("cfgBinId").value.trim();
+  if (!key) { mostrarStatusCfg("⚠️ Cole a Secret Key primeiro", "err"); return; }
+  mostrarStatusCfg("🔄 Conectando...", "ok");
+  cfg.key = key;
+  cfg.binId = binId;
+  if (!binId) {
+    criarBin();
   } else {
-    await pullLancs();
+    buscarLancs(function(ok) {
+      if (ok) {
+        salvarCfgLocal();
+        mostrarStatusCfg("✅ Conectado! Bin ID: " + cfg.binId, "ok");
+        iniciarSync();
+        toast("Conectado com sucesso!", "ok");
+      } else {
+        mostrarStatusCfg("❌ Erro — verifique a Secret Key e o Bin ID", "err");
+      }
+    });
   }
 }
-function checkBanner(){
-  document.getElementById('cfgBanner').style.display=CFG.key?'none':'flex';
-}
 
-// ── JSONBIN API ──────────────────────────────────────────────────────────────
-const JBIN_URL='https://api.jsonbin.io/v3';
-
-async function criarBin(){
-  setSyncState('busy');
-  try{
-    const r=await fetch(`${JBIN_URL}/b`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-Master-Key':CFG.key,'X-Bin-Name':'LimaEly-Financeiro','X-Bin-Private':'true'},
-      body:JSON.stringify({lancamentos:[]})
-    });
-    const d=await r.json();
-    if(d.metadata?.id){
-      CFG.binId=d.metadata.id;saveCfg();
-      document.getElementById('cfgBin').value=CFG.binId;
-      showToast('✅ Bin criado! Compartilhe o Bin ID','ok');
-      setSyncState('ok');
-    }else{
-      showToast('Erro ao criar bin','e');setSyncState('err');
+function criarBin() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", JBIN + "/b");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("X-Master-Key", cfg.key);
+  xhr.setRequestHeader("X-Bin-Name", "LimaEly");
+  xhr.setRequestHeader("X-Bin-Private", "false");
+  xhr.onload = function() {
+    if (xhr.status === 200 || xhr.status === 201) {
+      try {
+        var d = JSON.parse(xhr.responseText);
+        if (d.metadata && d.metadata.id) {
+          cfg.binId = d.metadata.id;
+          salvarCfgLocal();
+          document.getElementById("cfgBinId").value = cfg.binId;
+          mostrarStatusCfg("✅ Criado! Bin ID: " + cfg.binId + " — copie para Isabela", "ok");
+          iniciarSync();
+          toast("Bin criado com sucesso!", "ok");
+        } else {
+          mostrarStatusCfg("❌ Resposta inesperada do servidor", "err");
+        }
+      } catch(e) {
+        mostrarStatusCfg("❌ Erro ao processar resposta", "err");
+      }
+    } else {
+      mostrarStatusCfg("❌ Erro " + xhr.status + " — verifique a Secret Key", "err");
     }
-  }catch(e){showToast('Erro de conexão','e');setSyncState('err');}
+  };
+  xhr.onerror = function() {
+    mostrarStatusCfg("❌ Sem conexão com internet", "err");
+  };
+  xhr.send(JSON.stringify({ lancamentos: [] }));
 }
 
-async function pullLancs(){
-  if(!CFG.key||!CFG.binId)return;
-  setSyncState('busy');
-  try{
-    const r=await fetch(`${JBIN_URL}/b/${CFG.binId}/latest`,{
-      headers:{'X-Master-Key':CFG.key}
-    });
-    const d=await r.json();
-    if(d.record?.lancamentos){
-      lancs=d.record.lancamentos;
-      renderSaldo();renderHist();
-      setSyncState('ok');
+// ── SINCRONIZAÇÃO ─────────────────────────────────────────────────────────────
+function buscarLancs(callback) {
+  if (!cfg.key || !cfg.binId) { if (callback) callback(false); return; }
+  setDot("busy");
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", JBIN + "/b/" + cfg.binId + "/latest");
+  xhr.setRequestHeader("X-Master-Key", cfg.key);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      try {
+        var d = JSON.parse(xhr.responseText);
+        if (d.record && d.record.lancamentos) {
+          lancs = d.record.lancamentos;
+          salvarLancsLocal();
+          renderSaldo(); renderHist();
+          setDot("ok");
+          if (callback) callback(true);
+        } else {
+          setDot("ok");
+          if (callback) callback(true);
+        }
+      } catch(e) {
+        setDot("err");
+        if (callback) callback(false);
+      }
+    } else {
+      setDot("err");
+      if (callback) callback(false);
     }
-  }catch(e){setSyncState('err');}
+  };
+  xhr.onerror = function() { setDot("err"); if (callback) callback(false); };
+  xhr.send();
 }
 
-async function pushLancs(){
-  if(!CFG.key||!CFG.binId)return;
-  setSyncState('busy');
-  try{
-    await fetch(`${JBIN_URL}/b/${CFG.binId}`,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':CFG.key},
-      body:JSON.stringify({lancamentos})
-    });
-    setSyncState('ok');
-  }catch(e){setSyncState('err');showToast('Erro ao salvar na nuvem','e');}
+function enviarLancs(callback) {
+  if (!cfg.key || !cfg.binId) {
+    salvarLancsLocal();
+    if (callback) callback(true);
+    return;
+  }
+  setDot("busy");
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", JBIN + "/b/" + cfg.binId);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("X-Master-Key", cfg.key);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      salvarLancsLocal();
+      setDot("ok");
+      if (callback) callback(true);
+    } else {
+      salvarLancsLocal();
+      setDot("err");
+      toast("Salvo localmente — sem sync na nuvem", "w");
+      if (callback) callback(false);
+    }
+  };
+  xhr.onerror = function() {
+    salvarLancsLocal();
+    setDot("err");
+    toast("Salvo localmente — sem sync na nuvem", "w");
+    if (callback) callback(false);
+  };
+  xhr.send(JSON.stringify({ lancamentos: lancs }));
 }
 
-// Fallback local
-function loadLocal(){try{lancs=JSON.parse(localStorage.getItem('limaely_l')||'[]');}catch(e){lancs=[];}}
-function saveLocal(){localStorage.setItem('limaely_l',JSON.stringify(lancs));}
-
-// ── INIT UI ──────────────────────────────────────────────────────────────────
-function initBadge(){
-  const d=new Date();
-  document.getElementById('mbadge').textContent=`${MESES[d.getMonth()]}/${d.getFullYear()}`;
+function iniciarSync() {
+  if (syncTimer) clearInterval(syncTimer);
+  syncTimer = setInterval(function() { buscarLancs(null); }, 20000);
 }
-function initCats(){
-  const g=document.getElementById('cgrid');g.innerHTML='';
-  Object.entries(ICO).forEach(([cat,icon])=>{
-    const b=document.createElement('button');
-    b.className='cbtn';b.dataset.cat=cat;
-    b.innerHTML=`<span class="ci">${icon}</span><span class="cn">${cat}</span>`;
-    b.onclick=()=>selCatF(cat);g.appendChild(b);
+
+// ── INTERFACE ─────────────────────────────────────────────────────────────────
+function initBadge() {
+  var d = new Date();
+  document.getElementById("mbadge").textContent = MESES[d.getMonth()] + "/" + d.getFullYear();
+}
+
+function initCats() {
+  var g = document.getElementById("cgrid");
+  g.innerHTML = "";
+  Object.keys(ICO).forEach(function(key) {
+    var b = document.createElement("button");
+    b.className = "cbtn";
+    b.dataset.cat = key;
+    b.innerHTML = '<span class="ci">' + ICO[key] + '</span><span class="cn">' + BUD_LABEL[key] + '</span>';
+    b.onclick = function() { selecionarCat(key); };
+    g.appendChild(b);
   });
 }
-function initKeypad(){
-  const g=document.getElementById('kgrid');g.innerHTML='';
-  ['1','2','3','4','5','6','7','8','9',',','0','⌫'].forEach(k=>{
-    const b=document.createElement('button');
-    b.className='key'+(k==='⌫'?' kdel':'');
-    b.textContent=k;b.onclick=()=>handleKey(k);g.appendChild(b);
+
+function initKeypad() {
+  var g = document.getElementById("kgrid");
+  g.innerHTML = "";
+  ["1","2","3","4","5","6","7","8","9",",","0","⌫"].forEach(function(k) {
+    var b = document.createElement("button");
+    b.className = "key" + (k === "⌫" ? " kdel" : "");
+    b.textContent = k;
+    b.onclick = function() { tecla(k); };
+    g.appendChild(b);
   });
-  const c=document.createElement('button');
-  c.className='key kconf';c.id='kconf';c.textContent='Lançar →';c.onclick=lancar;
+  var c = document.createElement("button");
+  c.className = "key kconf";
+  c.id = "kconf";
+  c.textContent = "Lançar →";
+  c.onclick = lancar;
   g.appendChild(c);
 }
-function initFiltros(){
-  const b=document.getElementById('hfilt');
-  b.innerHTML='';
-  ['Todos','💚 Receitas',...Object.keys(ICO)].forEach(cat=>{
-    const ch=document.createElement('button');
-    ch.className='fchip'+(cat===filtro?' on':'');
-    ch.textContent=cat==='Todos'?'🗂️ Todos':cat;
-    ch.onclick=()=>{filtro=cat;initFiltros();renderHist();};
+
+function initFiltros() {
+  var b = document.getElementById("hfilt");
+  b.innerHTML = "";
+  ["Todos", "Receitas"].concat(Object.keys(ICO)).forEach(function(cat) {
+    var ch = document.createElement("button");
+    var label = cat === "Todos" ? "🗂️ Todos" : cat === "Receitas" ? "💚 Receitas" : ICO[cat] + " " + BUD_LABEL[cat];
+    ch.className = "fchip" + (cat === filtro ? " on" : "");
+    ch.textContent = label;
+    ch.onclick = function() { filtro = cat; initFiltros(); renderHist(); };
     b.appendChild(ch);
   });
 }
 
-// ── CONTROLES ────────────────────────────────────────────────────────────────
-function setUser(u){
-  user=u;
-  document.getElementById('bFer').className='ubtn'+(u==='Fernando'?' on':'');
-  document.getElementById('bIsa').className='ubtn'+(u==='Isabela'?' on':'');
-}
-function setTipo(t){
-  tipo=t;
-  const isR=t==='receita';
-  document.getElementById('btnG').className='tpbtn'+(isR?'':' ag');
-  document.getElementById('btnR').className='tpbtn'+(isR?' ar':'');
-  document.getElementById('vdisp').className='vdisp'+(isR?' rec':'');
-  document.getElementById('vlbl').textContent=isR?'Receita a registrar':'Valor a lançar';
-  document.getElementById('catsSec').style.display=isR?'none':'block';
-  const kc=document.getElementById('kconf');
-  if(kc)kc.className='key kconf'+(isR?' rmode':'');
-  updDisp();
-}
-function handleKey(k){
-  if(k==='⌫'){vs=vs.slice(0,-1);}
-  else if(k===','){if(!vs.includes(',')&&vs.length>0)vs+=',';}
-  else{
-    const pts=vs.split(',');
-    if(pts.length>1&&pts[1].length>=2)return;
-    vs=vs==='0'?k:vs+k;
-  }
-  updDisp();
-}
-function updDisp(){
-  document.getElementById('vn').textContent=fmtD(vs||'0');
-  const kc=document.getElementById('kconf');
-  if(kc)kc.disabled=!vs||parseFloat(vs.replace(',','.'))<= 0||(tipo==='gasto'&&!sc);
-}
-function fmtD(s){
-  const p=s.split(',');
-  const i=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.');
-  return p.length>1?`${i},${p[1]}`:i;
-}
-function selCatF(cat){
-  sc=cat;
-  document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('sel'));
-  document.querySelector(`.cbtn[data-cat="${cat}"]`)?.classList.add('sel');
-  updDisp();
+// ── CONTROLES ─────────────────────────────────────────────────────────────────
+function setUser(u) {
+  user = u;
+  document.getElementById("bFer").className = "ubtn" + (u === "Fernando" ? " on" : "");
+  document.getElementById("bIsa").className = "ubtn" + (u === "Isabela" ? " on" : "");
 }
 
-// ── LANÇAR ──────────────────────────────────────────────────────────────────
-async function lancar(){
-  const isR=tipo==='receita';
-  if(!vs)return;
-  const valor=parseFloat(vs.replace(',','.'));
-  if(isNaN(valor)||valor<=0)return;
-  if(!isR&&!sc)return;
-  const desc=document.getElementById('desc').value.trim()||(isR?'Receita':sc);
-  const now=new Date();
-  const item={
-    id:Date.now(),
-    data:now.toLocaleDateString('pt-BR'),
-    hora:now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),
-    quem:user,descricao:desc,
-    categoria:isR?'💚 Receita':sc,
-    valor,tipo:isR?'Receita':'Gasto',
-    mesKey:mesKey(),status:'Ativo'
+function setTipo(t) {
+  tipo = t;
+  var isR = t === "receita";
+  document.getElementById("btnG").className = "tpbtn" + (isR ? "" : " ag");
+  document.getElementById("btnR").className = "tpbtn" + (isR ? " ar" : "");
+  document.getElementById("vdisp").className = "vdisp" + (isR ? " rec" : "");
+  document.getElementById("vlbl").textContent = isR ? "Receita a registrar" : "Valor a lançar";
+  document.getElementById("catsSec").style.display = isR ? "none" : "block";
+  var kc = document.getElementById("kconf");
+  if (kc) kc.className = "key kconf" + (isR ? " rmode" : "");
+  atualizarDisplay();
+}
+
+function tecla(k) {
+  if (k === "⌫") {
+    vs = vs.slice(0, -1);
+  } else if (k === ",") {
+    if (vs.indexOf(",") === -1 && vs.length > 0) vs += ",";
+  } else {
+    var partes = vs.split(",");
+    if (partes.length > 1 && partes[1].length >= 2) return;
+    vs = vs === "0" ? k : vs + k;
+  }
+  atualizarDisplay();
+}
+
+function atualizarDisplay() {
+  var el = document.getElementById("vn");
+  var str = vs || "0";
+  var partes = str.split(",");
+  var intParte = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  el.textContent = partes.length > 1 ? intParte + "," + partes[1] : intParte;
+  var kc = document.getElementById("kconf");
+  if (kc) {
+    var val = parseFloat(vs.replace(",", ".")) || 0;
+    kc.disabled = !vs || val <= 0 || (tipo === "gasto" && !selCat);
+  }
+}
+
+function selecionarCat(cat) {
+  selCat = cat;
+  document.querySelectorAll(".cbtn").forEach(function(b) { b.classList.remove("sel"); });
+  var btn = document.querySelector('.cbtn[data-cat="' + cat + '"]');
+  if (btn) btn.classList.add("sel");
+  atualizarDisplay();
+}
+
+// ── LANÇAR ────────────────────────────────────────────────────────────────────
+function lancar() {
+  var isR = tipo === "receita";
+  if (!vs) return;
+  var valor = parseFloat(vs.replace(",", "."));
+  if (isNaN(valor) || valor <= 0) return;
+  if (!isR && !selCat) return;
+
+  var desc = document.getElementById("desc").value.trim() || (isR ? "Receita" : BUD_LABEL[selCat]);
+  var now = new Date();
+  var item = {
+    id: Date.now(),
+    dt: now.toLocaleDateString("pt-BR"),
+    hr: now.toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"}),
+    qu: user,
+    ds: desc,
+    ct: isR ? "Receita" : selCat,
+    vl: valor,
+    tp: isR ? "R" : "G",
+    mk: mesKey(),
+    st: "A"
   };
 
-  // Busca dados mais recentes antes de salvar (evita conflito)
-  if(CFG.key&&CFG.binId)await pullLancs();
-  lancs.unshift(item);
-  saveLocal();
-  if(CFG.key&&CFG.binId)await pushLancs();
-
-  // Modal
-  document.getElementById('mval').textContent=(isR?'+':'')+'R$ '+brl(valor);
-  document.getElementById('mcat').textContent=isR?`💚 Receita · ${desc}`:`${ICO[sc]} ${sc} · ${desc}`;
-  let ah='',sh='';
-  if(isR){
-    const tr=getLancs().filter(l=>l.tipo==='Receita').reduce((s,l)=>s+l.valor,0);
-    sh=`<div class="msr"><span class="msl">Receita lançada</span><span class="msv" style="color:var(--green)">+R$ ${brl(valor)}</span></div>
-        <div class="msr"><span class="msl">Total receitas extras mês</span><span class="msv" style="color:var(--green)">R$ ${brl(tr)}</span></div>`;
-  }else{
-    const gc=getLancs().filter(l=>l.categoria===sc&&l.tipo!=='Receita').reduce((s,l)=>s+l.valor,0);
-    const bg=BUD[sc];const pct=gc/bg;const dp=bg-gc;
-    if(pct>1)ah=`<div class="malerta c">🚨 Budget de ${sc} ultrapassado em R$ ${brl(Math.abs(dp))}!</div>`;
-    else if(pct>=0.8)ah=`<div class="malerta">⚠️ ${sc} em ${Math.round(pct*100)}%. Restam R$ ${brl(dp)}.</div>`;
-    const bc=pct>1?'vc':pct>=0.8?'vw':'vok';
-    sh=`<div class="msr"><span class="msl">Gasto em ${sc}</span><span class="msv">R$ ${brl(gc)}</span></div>
-        <div class="msr"><span class="msl">Budget mensal</span><span class="msv">R$ ${brl(bg)}</span></div>
-        <div class="msr"><span class="msl">Disponível</span><span class="msv ${bc}">R$ ${brl(Math.max(0,dp))}</span></div>
-        <div style="margin-top:9px"><div class="pb"><div class="pf ${pct>1?'pc':pct>=0.8?'pw':'pok'}" style="width:${Math.min(100,pct*100).toFixed(1)}%"></div></div></div>`;
+  // Buscar dados mais recentes primeiro (se tiver nuvem)
+  function salvarItem() {
+    lancs.unshift(item);
+    enviarLancs(function() {
+      // Mostrar modal
+      mostrarModal(item, isR);
+      // Reset
+      vs = ""; selCat = null;
+      document.getElementById("desc").value = "";
+      document.querySelectorAll(".cbtn").forEach(function(b) { b.classList.remove("sel"); });
+      atualizarDisplay();
+      renderSaldo(); renderHist();
+    });
   }
-  document.getElementById('malerta').innerHTML=ah;
-  document.getElementById('msaldo').innerHTML=sh;
-  document.getElementById('overlay').classList.add('show');
 
-  vs='';sc=null;
-  document.getElementById('desc').value='';
-  document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('sel'));
-  updDisp();renderSaldo();renderHist();
-}
-function closeModal(){document.getElementById('overlay').classList.remove('show');}
-
-// ── SALDO ────────────────────────────────────────────────────────────────────
-function renderSaldo(){
-  const all=getLancs();
-  const gs=all.filter(l=>l.tipo!=='Receita');
-  const rs=all.filter(l=>l.tipo==='Receita');
-  const tg=gs.reduce((s,l)=>s+l.valor,0);
-  const tr=rs.reduce((s,l)=>s+l.valor,0);
-  const hoje=new Date().toLocaleDateString('pt-BR');
-  const gh=gs.filter(l=>l.data===hoje).reduce((s,l)=>s+l.valor,0);
-  const sl=TOTAL_ORC-tg;
-
-  document.getElementById('stval').textContent='R$ '+brl(tg);
-  document.getElementById('qsL').textContent=all.length;
-  document.getElementById('qsH').textContent='R$ '+brl(gh,0);
-  document.getElementById('qsS').textContent='R$ '+brl(Math.max(0,sl),0);
-
-  const rcw=document.getElementById('rcw');
-  rcw.innerHTML=tr>0?`<div class="rcard"><div><div class="rcl">💚 Receitas extras lançadas</div><div class="rcs">${rs.length} lançamento${rs.length!==1?'s':''} no mês</div></div><div class="rcv">+R$ ${brl(tr)}</div></div>`:'';
-
-  let ah='';
-  Object.entries(BUD).forEach(([cat,bg])=>{
-    const g=gs.filter(l=>l.categoria===cat).reduce((s,l)=>s+l.valor,0);
-    const p=g/bg;
-    if(p>1)ah+=`<div class="acard c"><span>🚨</span>${cat} ultrapassou em R$ ${brl(g-bg)}</div>`;
-    else if(p>=0.8)ah+=`<div class="acard w"><span>⚠️</span>${cat} em ${Math.round(p*100)}% — restam R$ ${brl(bg-g)}</div>`;
-  });
-  document.getElementById('acw').innerHTML=ah;
-
-  const scw=document.getElementById('scw');scw.innerHTML='';
-  Object.entries(BUD).forEach(([cat,bg])=>{
-    const g=gs.filter(l=>l.categoria===cat).reduce((s,l)=>s+l.valor,0);
-    const p=g/bg;const dp=bg-g;
-    const bc=p>1?'pc':p>=0.8?'pw':'pok';
-    const vc=p>1?'vc':p>=0.8?'vw':'vok';
-    scw.innerHTML+=`<div class="scard">
-      <div class="sctop">
-        <div class="scn"><span>${ICO[cat]}</span>${cat}</div>
-        <div class="svals"><div class="sg">R$ ${brl(g)}</div><div class="sb">de R$ ${brl(bg)}</div></div>
-      </div>
-      <div class="pb"><div class="pf ${bc}" style="width:${Math.min(100,p*100).toFixed(1)}%"></div></div>
-      <div class="sdp"><span class="sdl">${Math.round(p*100)}% usado</span><span class="sdv ${vc}">${p>1?'−':''}R$ ${brl(Math.abs(dp))} ${p>1?'acima':'livre'}</span></div>
-    </div>`;
-  });
+  if (cfg.key && cfg.binId) {
+    buscarLancs(function() { salvarItem(); });
+  } else {
+    salvarItem();
+  }
 }
 
-// ── HISTÓRICO ────────────────────────────────────────────────────────────────
-function renderHist(){
-  const all=getLancs();
-  const f=filtro==='Todos'?all:filtro==='💚 Receitas'?all.filter(l=>l.tipo==='Receita'):all.filter(l=>l.categoria===filtro);
-  const tg=f.filter(l=>l.tipo!=='Receita').reduce((s,l)=>s+l.valor,0);
-  const tr=f.filter(l=>l.tipo==='Receita').reduce((s,l)=>s+l.valor,0);
-  document.getElementById('htot').textContent='R$ '+brl(tg);
-  document.getElementById('hsub').textContent=`${f.length} lançamento${f.length!==1?'s':''} · +R$ ${brl(tr)} receitas`;
+function mostrarModal(item, isR) {
+  document.getElementById("mval").textContent = (isR ? "+" : "") + "R$ " + brl(item.vl);
+  document.getElementById("mcat").textContent = isR
+    ? "💚 Receita · " + item.ds
+    : ICO[item.ct] + " " + BUD_LABEL[item.ct] + " · " + item.ds;
 
-  const hl=document.getElementById('hlist');
-  if(!f.length){
-    hl.innerHTML=`<div class="hempty"><div class="ei">📭</div><p>Nenhum lançamento${filtro!=='Todos'?' em '+filtro:''} este mês</p></div>`;
+  var ah = "", ih = "";
+  if (isR) {
+    var tr = getLancs().filter(function(l) { return l.tp === "R"; }).reduce(function(s,l) { return s+l.vl; }, 0);
+    ih = '<div class="mrow"><span class="ml">Receita lançada</span><span class="mv" style="color:var(--green)">+R$ ' + brl(item.vl) + '</span></div>'
+       + '<div class="mrow"><span class="ml">Total receitas extras mês</span><span class="mv" style="color:var(--green)">R$ ' + brl(tr) + '</span></div>';
+  } else {
+    var gs = getLancs().filter(function(l) { return l.ct === item.ct && l.tp === "G"; }).reduce(function(s,l) { return s+l.vl; }, 0);
+    var bg = BUD[item.ct];
+    var pct = gs / bg;
+    var dp = bg - gs;
+    if (pct > 1) ah = '<div class="malrt c">🚨 Budget de ' + BUD_LABEL[item.ct] + ' ultrapassado em R$ ' + brl(Math.abs(dp)) + '!</div>';
+    else if (pct >= 0.8) ah = '<div class="malrt w">⚠️ ' + BUD_LABEL[item.ct] + ' em ' + Math.round(pct*100) + '%. Restam R$ ' + brl(dp) + '.</div>';
+    var vc = pct > 1 ? "vc" : pct >= 0.8 ? "vw" : "vok";
+    var pc = pct > 1 ? "pc" : pct >= 0.8 ? "pw" : "pok";
+    ih = '<div class="mrow"><span class="ml">Gasto em ' + BUD_LABEL[item.ct] + '</span><span class="mv">R$ ' + brl(gs) + '</span></div>'
+       + '<div class="mrow"><span class="ml">Budget mensal</span><span class="mv">R$ ' + brl(bg) + '</span></div>'
+       + '<div class="mrow"><span class="ml">Disponível</span><span class="mv ' + vc + '">R$ ' + brl(Math.max(0,dp)) + '</span></div>'
+       + '<div style="margin-top:9px"><div class="pb"><div class="pf ' + pc + '" style="width:' + Math.min(100,pct*100).toFixed(1) + '%"></div></div></div>';
+  }
+  document.getElementById("malrt").innerHTML = ah;
+  document.getElementById("minfo").innerHTML = ih;
+  document.getElementById("ov").className = "ov on";
+}
+
+function fecharModal() { document.getElementById("ov").className = "ov"; }
+
+// ── SALDO ─────────────────────────────────────────────────────────────────────
+function renderSaldo() {
+  var all = getLancs();
+  var gs = all.filter(function(l) { return l.tp === "G"; });
+  var rs = all.filter(function(l) { return l.tp === "R"; });
+  var tg = gs.reduce(function(s,l) { return s+l.vl; }, 0);
+  var tr = rs.reduce(function(s,l) { return s+l.vl; }, 0);
+  var hoje = new Date().toLocaleDateString("pt-BR");
+  var gh = gs.filter(function(l) { return l.dt === hoje; }).reduce(function(s,l) { return s+l.vl; }, 0);
+  var sl = TOTAL_ORC - tg;
+
+  document.getElementById("stval").textContent = "R$ " + brl(tg);
+  document.getElementById("qsL").textContent = all.length;
+  document.getElementById("qsH").textContent = "R$ " + brl(gh, 0);
+  document.getElementById("qsS").textContent = "R$ " + brl(Math.max(0,sl), 0);
+
+  var rcw = document.getElementById("rcw");
+  rcw.innerHTML = tr > 0
+    ? '<div class="rcard"><div><div class="rcl">💚 Receitas extras lançadas</div><div class="rcs">' + rs.length + ' lançamento' + (rs.length !== 1 ? 's' : '') + ' no mês</div></div><div class="rcv">+R$ ' + brl(tr) + '</div></div>'
+    : "";
+
+  var ah = "";
+  Object.keys(BUD).forEach(function(cat) {
+    var g = gs.filter(function(l) { return l.ct === cat; }).reduce(function(s,l) { return s+l.vl; }, 0);
+    var p = g / BUD[cat];
+    if (p > 1) ah += '<div class="acard c"><span>🚨</span>' + BUD_LABEL[cat] + ' ultrapassou em R$ ' + brl(g - BUD[cat]) + '</div>';
+    else if (p >= 0.8) ah += '<div class="acard w"><span>⚠️</span>' + BUD_LABEL[cat] + ' em ' + Math.round(p*100) + '% — restam R$ ' + brl(BUD[cat]-g) + '</div>';
+  });
+  document.getElementById("acw").innerHTML = ah;
+
+  var scw = document.getElementById("scw");
+  scw.innerHTML = "";
+  Object.keys(BUD).forEach(function(cat) {
+    var g = gs.filter(function(l) { return l.ct === cat; }).reduce(function(s,l) { return s+l.vl; }, 0);
+    var p = g / BUD[cat];
+    var dp = BUD[cat] - g;
+    var bc = p > 1 ? "pc" : p >= 0.8 ? "pw" : "pok";
+    var vc = p > 1 ? "vc" : p >= 0.8 ? "vw" : "vok";
+    scw.innerHTML += '<div class="scard">'
+      + '<div class="sctop"><div class="scn"><span>' + ICO[cat] + '</span>' + BUD_LABEL[cat] + '</div>'
+      + '<div class="svals"><div class="sg">R$ ' + brl(g) + '</div><div class="sb">de R$ ' + brl(BUD[cat]) + '</div></div></div>'
+      + '<div class="pb"><div class="pf ' + bc + '" style="width:' + Math.min(100,p*100).toFixed(1) + '%"></div></div>'
+      + '<div class="sdp"><span class="sdl">' + Math.round(p*100) + '% usado</span>'
+      + '<span class="sdv ' + vc + '">' + (p>1?'−':'') + 'R$ ' + brl(Math.abs(dp)) + ' ' + (p>1?'acima':'livre') + '</span></div>'
+      + '</div>';
+  });
+}
+
+// ── HISTÓRICO ─────────────────────────────────────────────────────────────────
+function renderHist() {
+  var all = getLancs();
+  var f;
+  if (filtro === "Todos") f = all;
+  else if (filtro === "Receitas") f = all.filter(function(l) { return l.tp === "R"; });
+  else f = all.filter(function(l) { return l.ct === filtro; });
+
+  var tg = f.filter(function(l) { return l.tp === "G"; }).reduce(function(s,l) { return s+l.vl; }, 0);
+  var tr = f.filter(function(l) { return l.tp === "R"; }).reduce(function(s,l) { return s+l.vl; }, 0);
+  document.getElementById("htot").textContent = "R$ " + brl(tg);
+  document.getElementById("hsub").textContent = f.length + " lançamento" + (f.length !== 1 ? "s" : "") + " · +R$ " + brl(tr) + " receitas";
+
+  var hl = document.getElementById("hlist");
+  if (!f.length) {
+    hl.innerHTML = '<div class="hempty"><div class="ei">📭</div><p>Nenhum lançamento' + (filtro !== "Todos" ? " em " + filtro : "") + ' este mês</p></div>';
     return;
   }
-  hl.innerHTML=f.map(l=>{
-    const isR=l.tipo==='Receita';
-    const icon=isR?'💚':(ICO[l.categoria]||'💸');
-    const cc=isR?'ri':(CAT_CLS[l.categoria]||'cO');
-    return `<div class="hitem ${cc}">
-      <span class="hico">${icon}</span>
-      <div class="hinf">
-        <div class="hdsc">${l.descricao}</div>
-        <div class="hmet">${l.quem} · ${l.data} ${l.hora}${isR?' · Receita':''}</div>
-      </div>
-      <span class="hval${isR?' rv':''}" >R$ ${brl(l.valor)}</span>
-      <button class="hdel" onclick="deletar(${l.id})">🗑️</button>
-    </div>`;
-  }).join('');
+  hl.innerHTML = f.map(function(l) {
+    var isR = l.tp === "R";
+    var icon = isR ? "💚" : (ICO[l.ct] || "💸");
+    var cc = isR ? "ri" : (CAT_CLS[l.ct] || "cO");
+    var label = isR ? "Receita" : BUD_LABEL[l.ct];
+    return '<div class="hitem ' + cc + '">'
+      + '<span class="hico">' + icon + '</span>'
+      + '<div class="hinf"><div class="hdsc">' + l.ds + '</div>'
+      + '<div class="hmet">' + l.qu + ' · ' + l.dt + ' ' + l.hr + (isR ? ' · Receita' : '') + '</div></div>'
+      + '<span class="hval' + (isR ? ' rv' : '') + '">R$ ' + brl(l.vl) + '</span>'
+      + '<button class="hdel" onclick="deletar(' + l.id + ')">🗑️</button>'
+      + '</div>';
+  }).join("");
 }
 
-async function deletar(id){
-  if(CFG.key&&CFG.binId)await pullLancs();
-  const i=lancs.findIndex(l=>l.id===id);
-  if(i>-1){lancs[i].status='CANCELADO';saveLocal();if(CFG.key&&CFG.binId)await pushLancs();}
-  renderSaldo();renderHist();showToast('Cancelado','ok');
+function deletar(id) {
+  buscarLancs(function() {
+    var i = lancs.findIndex(function(l) { return l.id === id; });
+    if (i > -1) {
+      lancs[i].st = "X";
+      enviarLancs(function() {
+        renderSaldo(); renderHist();
+        toast("Lançamento cancelado", "ok");
+      });
+    }
+  });
 }
 
-// ── NAV ──────────────────────────────────────────────────────────────────────
-function swTab(t){
-  document.querySelectorAll('.tc').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('.tbtn').forEach(x=>x.classList.remove('on'));
-  document.getElementById(`tc-${t}`).classList.add('on');
-  document.getElementById(`tb-${t}`).classList.add('on');
-  if(t==='saldo')renderSaldo();
-  if(t==='hist'){initFiltros();renderHist();}
+// ── NAVEGAÇÃO ─────────────────────────────────────────────────────────────────
+function swTab(t) {
+  document.querySelectorAll(".tc").forEach(function(x) { x.classList.remove("on"); });
+  document.querySelectorAll(".tbtn").forEach(function(x) { x.classList.remove("on"); });
+  document.getElementById("tc-" + t).classList.add("on");
+  document.getElementById("tb-" + t).classList.add("on");
+  if (t === "saldo") renderSaldo();
+  if (t === "hist") { initFiltros(); renderHist(); }
 }
 
-// ── BOOT ─────────────────────────────────────────────────────────────────────
-(async function init(){
-  loadCfg();loadLocal();
-  initBadge();initCats();initKeypad();initFiltros();checkBanner();
-  if(CFG.key&&CFG.binId){
-    await pullLancs();
-    // Auto-sync a cada 20s
-    setInterval(pullLancs,20000);
+// ── INICIALIZAÇÃO ─────────────────────────────────────────────────────────────
+(function init() {
+  carregarCfg();
+  carregarLancsLocal();
+  initBadge();
+  initCats();
+  initKeypad();
+  initFiltros();
+  if (cfg.key && cfg.binId) {
+    buscarLancs(null);
+    iniciarSync();
   }
-  renderSaldo();renderHist();updDisp();
+  renderSaldo();
+  renderHist();
+  atualizarDisplay();
 })();
 </script>
 </body>
